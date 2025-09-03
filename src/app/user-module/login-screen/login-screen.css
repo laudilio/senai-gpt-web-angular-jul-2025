@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+.titulo {
+    font-size: 76px;
+    font-family: "Inter";
+    font-weight: 400;
+    margin-bottom: 16px;
+
+}
+
+.robo-image{
+
+    background-image: url(/imgs/Rectangle.png);
+    background-size: cover;
+
+    width: 50vw; /* 50% da largura do monitor */
+    height: 100vh; /* 100% da altura da tela */
+
+
+}
+
+.page-container{
+    display: flex; /*um ao lado do outro*/
+
+}
+
+.login-container{
+
+    /* sera muito usado esses 4 comandos*/
+
+    display: flex; /*ativar o flex */
+    flex-direction: column; /* muda o flex para colunas */
+    align-items: center; /* centralizar horizontalmente */
+    justify-content: center; /* centralizar verticalmente */
+    width: 50vw;
+    height: 100vh;
+}
+
+.classe{/*com ponto antes*/
+
+}
+
+#id {/*com hashtag antes*/
+
+}
+
+img {/* tags, sem nenhum prefixo */
+
+}
+
+.login-container img {
+
+    height: 60px;
+}
+
+.input {
+
+    padding: 18px; /* margem interna */ 
+    background-color: #f7f9fb; /*define a cor de fundo */
+    width: 377px; /* define a largura */
+    border: 1px solid #ccc; /* define a borda */
+    border-radius: 10px; /* define o arredondamento da borda */
+    margin-bottom: 16px; /* define a distancia de um botao para o outro*/
+
+
+
+
+}
+
+.botao-login {
+    cursor: pointer;
+    padding: 18px;
+    color: blue;
+    width: 377px;
+    border-radius: 10px;
+
+}
+
