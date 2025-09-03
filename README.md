@@ -1,0 +1,1 @@
+# senai-gpt-web-angular-jul-2025
