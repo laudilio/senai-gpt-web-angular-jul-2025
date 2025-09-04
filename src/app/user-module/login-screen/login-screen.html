@@ -5,16 +5,16 @@
 
     </div>
     
-    <div class="login-container">
+    <div class="login-container" [formGroup]="loginform">
         
         <img class="logo" src="imgs/Chat (1).png" alt="logo do senai gpt">
 
         <h1 class='titulo'>login</h1>
 
-        <input class="input" type="email" placeholder="insira o e-mail">
-        <input class="input" type="password" placeholder="insira a senha">
+        <input class="input" type="email" placeholder="insira o e-mail" formControlname="email">
+        <input class="input" type="password" placeholder="insira a senha" formControlname="password">
 
-        <button class="botao-login">entrar</button> 
+        <button class="btn"(click)="onloginclick()">entrar</button> 
         
 
     </div>
