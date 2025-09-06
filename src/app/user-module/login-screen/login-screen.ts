@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -11,6 +12,10 @@ export class LoginScreen {
 
   loginForm: FormGroup;
 
+  emailErrorMessage: string;
+  sussesslogin: string;
+  credencialIncorreta: string;
+
   constructor(private fb: FormBuilder) {
     // quando a tela inicializar.
     // cria o campo obrigatorio de email.
@@ -21,7 +26,12 @@ export class LoginScreen {
       email: ["",[Validators.required]],
       password: ["",[Validators.required]]
     });
-  
+
+
+//inicia com uma string
+    this.emailErrorMessage = "";
+    this.sussesslogin = "";
+    this.credencialIncorreta = "";
   }
 
   async onloginclick() {
@@ -33,6 +43,9 @@ export class LoginScreen {
     console.log ("password", this.loginForm.value.password);
 
     if (this.loginForm.value.email == "") {
+
+      //alert("preencha o e-mail");
+      this.emailErrorMessage = "o campo de email e obrigatorio.";
 
       alert("preencha o email.");
       return;
@@ -47,7 +60,7 @@ export class LoginScreen {
 
     let response = await fetch("https://senai-gpt-api.azurewebsites.net/login", {
 
-      method: "POST", //Enviar ,
+      method: "POST", //Enviar , get.. buscar 
 
       headers: {
 
@@ -65,13 +78,13 @@ export class LoginScreen {
 
     if (response.status == 200){
 
-      alert("esta correto");
+      this.sussesslogin = "logado com sucesso"
     } else{
 
-      alert("nao deu certo o status");
-
+      this.credencialIncorreta = "credencial incorreta"   
 
     }
+  
     
   }
 
