@@ -1,5 +1,5 @@
 import { ThisReceiver } from '@angular/compiler';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -16,7 +16,7 @@ export class LoginScreen {
   sussesslogin: string;
   credencialIncorreta: string;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private cd: ChangeDetectorRef) {
     // quando a tela inicializar.
     // cria o campo obrigatorio de email.
     // cria o campo obrigatorio de senha.
@@ -36,7 +36,9 @@ export class LoginScreen {
 
   async onloginclick() {
 
-    alert("botao de login clicado");
+     this.emailErrorMessage = "";
+    this.sussesslogin = "";
+    this.credencialIncorreta = "";
 
     console.log("Email", this.loginForm.value.email);
 
@@ -76,14 +78,30 @@ export class LoginScreen {
 
     console.log("STATUS CODE", response.status);
 
-    if (response.status == 200){
+    if (response.status >= 200&& response.status <= 299){
 
       this.sussesslogin = "logado com sucesso"
+
+      let json =await response.json();
+
+      console.log("JSON",json);
+
+      let meuToken = json.accessToken;
+
+      let userId = json.user.id;
+
+      localStorage.setItem("meuToken", meuToken);
+      localStorage.setItem("meuId", userId);
+
+      window.location.href = "chat";
+
     } else{
 
       this.credencialIncorreta = "credencial incorreta"   
 
     }
+
+    this.cd.detectChanges(); // forcar uma atualizacao na tela.
   
     
   }

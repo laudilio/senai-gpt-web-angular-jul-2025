@@ -12,9 +12,10 @@ export const routes: Routes = [
         loadComponent: () => LoginScreen
     },
     {
-        path:"chat-screen",
+        path:"chat",
         loadComponent: () => ChatScren
-    }
+    },
+    
 
 ];
 
