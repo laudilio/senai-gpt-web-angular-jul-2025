@@ -1,0 +1,30 @@
+<header></header>
+
+<main class="page-container"> <!-- caixa maior-->
+    <div class="robo-image">
+
+    </div>
+    
+    <div class="login-container" [formGroup]="newUserScren">
+        
+        <img class="logo" src="imgs/Chat (1).png" alt="logo do senai gpt">
+
+        <h1 class='titulo'>login</h1>
+        <input class="input" type="text" placeholder="insira seu nome" formControlName="nome">
+        <input class="input" type="email" placeholder="insira o e-mail" formControlName="email">
+        <span class="error-message"></span>
+
+
+        <input class="input" type="password" placeholder="insira a senha" formControlName="password">
+        <input class="input" type="newPassword" placeholder="nova a senha" formControlName="newPassword">
+        
+
+        <button class="btn">entrar</button> 
+        <span class="error-message"></span>
+        <span class="error-message"></span>
+
+    </div>
+
+</main> 
+
+<footer></footer>
