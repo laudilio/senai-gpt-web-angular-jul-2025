@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   templateUrl: './new-user-scren.html',
   styleUrl: './new-user-scren.css'
 })
-export class NewUserScren { 
+export class NewUserScren {
 
   newUserScren: FormGroup;
 
@@ -18,23 +18,25 @@ export class NewUserScren {
 
     this.newUserScren = this.fb.group({
 
-      email: ["",[Validators.required]],
-      password: ["",[Validators.required]],
-      newPassword:["",[Validators.required]],
-      nome:["",[Validators.required]],
+      email: ["", [Validators.required]],
+      password: ["", [Validators.required]],
+      newPassword: ["", [Validators.required]],
+      nome: ["", [Validators.required]],
 
     });
   }
-    async click() {
-       const token = localStorage.getItem("meuToken");
-       let response = await fetch("https://senai-gpt-api.azurewebsites.net/users", {
-        
+  async onCadastroclick() {
+
+    console.log("AAA");
+    const token = localStorage.getItem("meuToken");
+    let response = await fetch("https://senai-gpt-api.azurewebsites.net/users", {
+
       method: "POST", //Enviar , get.. buscar 
 
       headers: {
 
-        "Content-Type" : "application/json",
-        "authorization":`Bearer ${token}`
+        "Content-Type": "application/json",
+        "authorization": `Bearer ${token}`
       },
       body: JSON.stringify({
 
@@ -45,7 +47,13 @@ export class NewUserScren {
       })
     });
 
-    }
+    if (response.ok == true) {
+
+      window.location.href = "login"
+
+    }else alert("aplicacao deu erro");
+
+  }
 
 
 
