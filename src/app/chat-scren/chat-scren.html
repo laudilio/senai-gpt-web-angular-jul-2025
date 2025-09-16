@@ -9,10 +9,9 @@
     <aside class="left-panel">
         <div class="top">
 
-            <button class="new-chat"> <i class="fa-solid fa-location-pin"></i>+ NEW CHAT </button>
-            <a href="" class="botao-menor"><i class="fa-solid fa-dove"></i>AL CHAT TOOL ETHICS</a>
-            <a href="" class="botao-menor"><i class="fa-solid fa-comment"></i>AL CHAT TOOL IMPACT WRITING</a>
-            <a href="" class="botao-menor"><i class="fa-solid fa-leaf"></i>NEW CHAT</a>
+            <button class="btn-new-chat">+ NEW CHAT</button>
+              
+            <a *ngFor="let chat of chats" class="botao-menor"><i class="fa-solid fa-dove"></i>{{chat.chatTitle}}</a>
 
         </div>
 
