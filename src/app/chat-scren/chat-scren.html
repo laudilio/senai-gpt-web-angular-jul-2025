@@ -10,8 +10,13 @@
         <div class="top">
 
             <button class="btn-new-chat">+ NEW CHAT</button>
-              
-            <a *ngFor="let chat of chats" class="botao-menor"><i class="fa-solid fa-dove"></i>{{chat.chatTitle}}</a>
+            
+            @for (chat of chats; track $index) {
+
+                <a class="botao-menor"(click)="onChatClick(chat)"><i class="fa-solid fa-dove"></i>{{chat.chatTitle}}</a>
+            }
+
+           
 
         </div>
 
