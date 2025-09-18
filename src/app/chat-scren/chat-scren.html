@@ -37,8 +37,11 @@
 
     <!-- Conteúdo principal do site -->
     <main class="central-panel">
+
+        @if (chatSelecionado == null){
         <div class="imgs">
             <img class="logo" src="imgs/Chat (1).png"/>
+         
 
 
         </div>
@@ -76,6 +79,23 @@
 
 
         </div>
+    }
+    @if (chatSelecionado != null) {
+
+        <div class="chat-container">
+            <div class="chat-header">
+                <h2>{{chatSelecionado.chatTitle}}</h2>
+        </div>
+        <div class=" chat-messages">
+            @for (msg of mensagens; track $index) {
+                <p class="message-item"[class.chatbot]="msg.userId =='chatbot'">{{ msg.text }}</p>
+            }
+
+        </div>
+    </div>
+    } 
+         
+    
 
         <div class="input-container">
 
@@ -83,9 +103,10 @@
 
             <i class="fa-solid fa-image"></i>
 
-            <input type="text" placeholder="type message">
+            <input [formControl]="mensagemUsario" type="text" placeholder="type message">
 
-            <i class="send-button fa-solid fa-paper-plane"></i>
+
+            <i class="send-button fa-solid fa-paper-plane"(click)="enviarMensagem()"></i>
 
         </div>
 

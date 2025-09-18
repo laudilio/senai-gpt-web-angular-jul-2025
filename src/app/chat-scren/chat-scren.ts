@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ɵgetUnknownElementStrictMode } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 
 
@@ -21,7 +22,7 @@ interface IMessage{
 
 @Component({
   selector: 'app-chat-scren',
-  imports: [CommonModule],
+  imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './chat-scren.html',
   styleUrl: './chat-scren.css'
 })
@@ -30,8 +31,10 @@ export class ChatScren {
   chats : Ichat[];
   chatSelecionado: Ichat;
   mensagens: IMessage[];
+  mensagemUsario = new FormControl(""); // declaramose atribuimos valor.
 
-  constructor(private http: HttpClient, private cd?: ChangeDetectorRef){ //constroi a classe // inicializacao de variaveis
+
+  constructor(private http: HttpClient, private cd: ChangeDetectorRef){ //constroi a classe // inicializacao de variaveis
     this.chats = [];
     this.chatSelecionado = null!;
     this.mensagens = [];
@@ -80,6 +83,20 @@ export class ChatScren {
     console.log("MENSAGENS", response);
 
     this.mensagens = response as IMessage[];
+
+    this.cd.detectChanges(); // forcar uma atualizacao na tela.
+
+
+  }
+
+  async enviarMensagem () {
+
+    let novamensagemUsario = {
+
+      chat: this.chatSelecionado.id,
+      userId: localStorage.getItem("meuId"),
+      text: this.mensagemUsario.value 
+    };
 
 
   }
