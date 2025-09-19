@@ -93,12 +93,61 @@ export class ChatScren {
 
     let novamensagemUsario = {
 
-      chat: this.chatSelecionado.id,
+      chatId: this.chatSelecionado.id,
       userId: localStorage.getItem("meuId"),
       text: this.mensagemUsario.value 
     };
 
+    let novamensagemUsarioresponse = await firstValueFrom (this.http.post("https://senai-gpt-api.azurewebsites.net/messages",novamensagemUsario,{
+      headers: {
+        "content-type": "application/json",
+        "Authorization" : "Bearer " + localStorage.getItem("meuToken")
+      }
+    }));
 
+    await this.onChatClick(this.chatSelecionado);
+
+    // 2 enviar a mensagem do usuario para a ia responder
+
+    let respostaIaresponse = await firstValueFrom(this.http.post("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",{
+      "contents": [
+        {
+          "parts": [
+            {
+              "text": this.mensagemUsario.value + ".Me de uma resposta mais objetiva."
+            }
+          ]
+        }
+      ]
+    }, {
+
+      headers: {
+        "content-type": "application/json",
+        "X-goog-api-key": "AIzaSyDV2HECQZLpWJrqCKEbuq7TT5QPKKdLOdo"
+
+      }
+
+    })) as any;
+
+    let novarespostaIa = {
+
+      chatId: this.chatSelecionado.id,
+      userId: "chatbot",
+      text: respostaIaresponse.candidates[0].content.parts[0].text
+
+    }
+    
+    let novarespostaIaResponse = await firstValueFrom (this.http.post("https://senai-gpt-api.azurewebsites.net/messages",novarespostaIa, {
+      headers: {
+        "content-type": "application/json",
+        "Authorization" : "Bearer " + localStorage.getItem("meuToken")
+      }
+    }));
+    
+    // atualiza as mensagens da tela
+
+    await this.onChatClick(this.chatSelecionado);
+ 
   }
 
 }
