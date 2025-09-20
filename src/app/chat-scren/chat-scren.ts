@@ -52,10 +52,16 @@ export class ChatScren {
       headers: {
         "Authorization" : "Bearer " + localStorage.getItem("meuToken")
       }
-    }));
+    }))as Ichat[];
 
     if(response){
 
+      console.log("CHATS", response);
+
+      let userId = localStorage.getItem("meuId");
+      response = response.filter(chat => chat.userId == userId);
+
+      //mostra os chats na tela .
       this.chats = response as [];
 
     }else{
@@ -136,7 +142,7 @@ export class ChatScren {
       text: respostaIaresponse.candidates[0].content.parts[0].text
 
     }
-    
+    // 3 salva a resposta da ia no banco de dados.
     let novarespostaIaResponse = await firstValueFrom (this.http.post("https://senai-gpt-api.azurewebsites.net/messages",novarespostaIa, {
       headers: {
         "content-type": "application/json",
@@ -148,6 +154,53 @@ export class ChatScren {
 
     await this.onChatClick(this.chatSelecionado);
  
+  }
+  async novoChat(){
+
+    const nomeChat = prompt("Digite o nome do chat:");
+
+    if(!nomeChat) {
+      // caso o usuario deixe o campo vazio.
+      alert("nome invalido.");
+      return; // para a execucao do metodo. 
+
+    }
+
+    const novoChatObj ={
+
+      chatTitle: nomeChat,
+      userId: localStorage.getItem("meuId")
+      //id - o back end ira gerar 
+
+    }
+    let novoChatResponse = await firstValueFrom (this.http.post("https://senai-gpt-api.azurewebsites.net/chats",novoChatObj, {
+      headers: {
+        "content-type": "application/json",
+        "Authorization" : "Bearer " + localStorage.getItem("meuToken")
+      }
+    })) as Ichat;
+
+    // atualiza os chats da tela .
+
+    await this.getChats();
+
+    // abre o chat recem criado 
+
+    await this.onChatClick(novoChatResponse);
+
+  }
+  deslogar() {
+    // 1 alternativa 
+
+    localStorage.removeItem("meuToken");
+    localStorage.removeItem("meuId");
+
+    // 2 alternativa 
+
+    localStorage.clear();
+    window.location.href = "login";
+
+
   }
 
 }

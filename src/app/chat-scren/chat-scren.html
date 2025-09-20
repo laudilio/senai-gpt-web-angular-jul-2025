@@ -9,7 +9,7 @@
     <aside class="left-panel">
         <div class="top">
 
-            <button class="btn-new-chat">+ NEW CHAT</button>
+            <button class="btn-new-chat"(click)="novoChat()">+ NEW CHAT</button>
             
             @for (chat of chats; track $index) {
 
@@ -23,15 +23,15 @@
 
         <div class="bottom">
 
-            <a href="" class="botao-menor"><i class="fa-solid fa-circle"></i> CLEAR CONVERSATION</a>
+            <!-- <a href="" class="botao-menor"><i class="fa-solid fa-circle"></i> CLEAR CONVERSATION</a>
             <a href="" class="botao-menor"><i class="fa-solid fa-dice-one"></i>LIGHT MODE</a>
             <a href="" class="botao-menor"><i class="fa-solid fa-cross"></i>MY ACCOUNT</a>
-            <a href="" class="botao-menor"><i class="fa-solid fa-location-dot"></i>UPDATES & FAD</a>
-            <a href="" class="botao-menor"><i class="fa-solid fa-certificate"></i>LOG OUT</a>
+            <a href="" class="botao-menor"><i class="fa-solid fa-location-dot"></i>UPDATES & FAD</a> -->
+            <button (click) = "deslogar()" class="botao-menor"><i class="fa-solid fa-certificate"></i>LOG OUT </button>
 
         </div>
 
-
+ 
     </aside>
 
 
@@ -81,6 +81,8 @@
         </div>
     }
     @if (chatSelecionado != null) {
+        <! -- so vai ser executado quando o usuario tiver clicado em um chat-->
+
 
         <div class="chat-container">
             <div class="chat-header">
@@ -92,6 +94,19 @@
             }
 
         </div>
+    </div>
+
+    <div class="input-container">
+
+        <i class="fa-solid fa-microphone"></i>
+
+        <i class="fa-solid fa-image"></i>
+
+        <input [formControl]="mensagemUsario" type="text" placeholder="type message">
+
+
+        <i class="send-button fa-solid fa-paper-plane"(click)="enviarMensagem()"></i>
+
     </div>
     } 
          

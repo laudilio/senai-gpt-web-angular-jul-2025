@@ -49,6 +49,7 @@
     justify-content: space-around;
     text-align: left;
     border-top: 1px solid blue;
+    overflow: auto;
 
 }
 .botao-menor{
