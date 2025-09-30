@@ -54,8 +54,7 @@ export class NewUserScren {
     }else alert("aplicacao deu erro");
 
   }
-
-
-
 }
+
+
 

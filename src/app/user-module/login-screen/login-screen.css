@@ -85,3 +85,38 @@ img {/* tags, sem nenhum prefixo */
 
 }
 
+/* media query*/ 
+@media screen and (max-width: 1366px) {
+
+    /* ate 1366 - ou seja e um monitor pequeno */
+
+
+}
+
+@media screen and (max-width: 1000px) {
+
+    /* ate 1000 - ou seja e um tablet */
+
+    .robo-image {
+        background-position: center;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+
+    /* Ate 768px - ou seja, e um celular */
+
+    .robo-image{
+
+        display: none;
+    }
+
+    .login-container {
+
+        width: 100vw;
+    }
+    
+}
+
+
