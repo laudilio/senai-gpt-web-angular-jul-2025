@@ -27,6 +27,7 @@
             <a href="" class="botao-menor"><i class="fa-solid fa-dice-one"></i>LIGHT MODE</a>
             <a href="" class="botao-menor"><i class="fa-solid fa-cross"></i>MY ACCOUNT</a>
             <a href="" class="botao-menor"><i class="fa-solid fa-location-dot"></i>UPDATES & FAD</a> -->
+            <button (click) = "ligarDesligarDarkMode()" class = "botao-menor"><i class="fa-solid fa-moon"></i>modo escuro </button>
             <button (click) = "deslogar()" class="botao-menor"><i class="fa-solid fa-certificate"></i>LOG OUT </button>
 
         </div>
@@ -40,7 +41,7 @@
 
         @if (chatSelecionado == null){
         <div class="imgs">
-            <img class="logo" src="imgs/Chat (1).png"/>
+            <img class="logo" [src]="darkMode == true? 'imgs/Chat -darkmode.png' : 'imgs/Chat (1).png'"/>
          
 
 

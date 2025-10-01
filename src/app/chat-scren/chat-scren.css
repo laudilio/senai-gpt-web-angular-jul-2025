@@ -214,3 +214,25 @@
     background: #000;
   
   }
+  ::ng-deep body.dark-mode .left-panel{
+
+    background-color: blue !important;
+
+  }
+
+  ::ng-deep body.dark-mode .top{
+
+    background-color: blue !important;
+
+  }
+
+  ::ng-deep body.dark-mode .bottom{
+
+    background-color:dodgerblue !important;
+  }
+
+  ::ng-deep body.dark-mode .new-chat{
+
+    background-color:midnightblue !important;
+  }
+  
